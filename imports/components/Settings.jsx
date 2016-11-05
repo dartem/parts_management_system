@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Router } from "react-router";
+import { Router, Link } from "react-router";
 
 import { Appliances } from '../api/appliances.js';
 
@@ -49,6 +49,8 @@ class Settings extends Component {
 		if (this.props.appliances.length > 0) {
 			return (
 				<div>
+					<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
+
 					<div className="row m-t-20">
 			            <div className="col-md-6">
 			              	<div className="panel panel-default">
@@ -78,6 +80,8 @@ class Settings extends Component {
 		} else {
 			return (
 				<div>
+
+					<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
 					<div className="row m-t-20">
 

@@ -6,7 +6,7 @@
 
   <div class="container">
 
-    <div class="row">
+    <div class="row m-t-10">
       <div class="col-md-8 col-md-offset-2">
         <!-- Static navbar -->
         <nav class="navbar navbar-default">
@@ -21,11 +21,6 @@
               <a class="navbar-brand" href="/">Parts</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                {{#if currentUser}}
-                  <li><a href="/settings">Settings</a></li>
-                {{/if}}
-              </ul>
               <ul class="nav navbar-nav navbar-right">
                 {{> loginButtons}}
               </ul>

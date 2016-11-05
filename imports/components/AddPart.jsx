@@ -33,19 +33,19 @@ class AddPart extends Component {
 	    	partQty = parseInt(partQty);
 
 	    	if (partPrice == '' || partPrice == ' ') {
-	    		partPrice = 'Not Set';
+	    		partPrice = '...';
 	    	}
 
 	    	if (partMyPrice == '' || partMyPrice == ' ') {
-	    		partMyPrice = 'Not Set';
+	    		partMyPrice = '...';
 	    	}
 
 	    	if (partLocation == '' || partLocation == ' ') {
-	    		partLocation = 'Not Set';
+	    		partLocation = '...';
 	    	}
 
 	    	if (partAppliance == '' || partAppliance == ' ') {
-	    		partAppliance = 'Not Set';
+	    		partAppliance = '...';
 	    	}
 	 
 		    Meteor.call('part.insert', partTitle, partNumber, partQty, partPrice, partMyPrice, partLocation, partAppliance);
@@ -94,9 +94,7 @@ class AddPart extends Component {
 
 					<div className="col-md-8 col-md-offset-2">
 
-						<div className="text-right m-b-10">
-							<Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link>
-						</div>
+						<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
 						<div className="panel panel-default">
 					    	<div className="panel-heading"><h5 className="m-all-0">Add Part</h5></div>

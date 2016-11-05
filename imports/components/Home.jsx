@@ -33,7 +33,7 @@ class Home extends Component {
 	render() {
 
 		const {loading} = this.props;
-		
+
 		if (loading) {
 			return (
 				<div>
@@ -49,6 +49,10 @@ class Home extends Component {
 				<div className="m-t-20">
 
 					{this.renderHeader()}
+
+					<div className="panel panel-default m-l-10 m-r-10">
+						<div className="panel-heading"><h5 className="m-all-0">All Parts</h5></div>
+					</div>
 
 					<Masonry
 		                className={'masonry-default m-t-10'} // default ''

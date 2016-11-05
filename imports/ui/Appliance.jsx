@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 export default class Appliance extends Component {
 
   removeAppliance() {
-    Meteor.call('appliance.remove', this.props.appliance._id);
+    if (confirm("Are you sure you want to DELETE this appliance?") == true) {
+      Meteor.call('appliance.remove', this.props.appliance._id);
+    }
   }
 
   render() {

@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 export default class Location extends Component {
 
   removeLocation() {
-    Meteor.call('location.remove', this.props.location._id);
+    if (confirm("Are you sure you want to DELETE this location?") == true) {
+      Meteor.call('location.remove', this.props.location._id);
+    }
   }
 
   render() {

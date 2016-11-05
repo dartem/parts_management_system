@@ -62,9 +62,7 @@ class AddPart extends Component {
 
 						<div className="col-md-8 col-md-offset-2">
 
-							<div className="text-right m-b-10">
-								<Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link>
-							</div>
+							<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
 							<div className="panel panel-default">
 						    	<div className="panel-heading"><h5 className="m-all-0">Update {this.props.parts[0].title} info</h5></div>

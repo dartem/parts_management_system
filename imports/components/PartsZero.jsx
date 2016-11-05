@@ -38,17 +38,20 @@ class Home extends Component {
 			return (
 				<div className="m-t-20">
 
-					<h4 className="text-center"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link> ~ Parts with QTY 0</h4>
+					<h4 className="text-right m-l-10 m-r-10"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
+					<div className="panel panel-default m-l-10 m-r-10">
+						<div className="panel-heading"><h5 className="m-all-0">Parts with QTY 0</h5></div>
+					</div>
 					<Masonry
-		                className={'masonry-default m-t-10'} // default ''
-		                elementType={'div'} // default 'div'
-		                options={masonryOptions} // default {}
-		                disableImagesLoaded={false} // default false
-		                updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-		            >
-		                {this.renderPart()}
-		            </Masonry>
+				         className={'masonry-default m-t-10'} // default ''
+				         elementType={'div'} // default 'div'
+				         options={masonryOptions} // default {}
+				         disableImagesLoaded={false} // default false
+				         updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+				    >
+				        {this.renderPart()}
+				    </Masonry>
 					
 				</div>
 			);
