@@ -34,8 +34,8 @@ export class App extends React.Component {
         <Route path="/" component={Home} />
         <Route path="/settings" component={Settings} onEnter={requireAuth} />
         <Route path="/add-part" component={AddPart} onEnter={requireAuth} />
-        <Route path="/part/:partId" component={SinglePart}/>
-        <Route path="/parts-zero" component={PartsZero}/>
+        <Route path="/part/:partId" component={SinglePart} onEnter={requireAuth} />
+        <Route path="/parts-zero" component={PartsZero} onEnter={requireAuth} />
         <Route path="*" component={NoMatch}/>
       </Router>
     );

@@ -20,6 +20,7 @@ export class Header extends Component {
       searchResult.innerHTML = '';
 
       var queryRes = Parts.find({  $or: [ { num: {$regex: ".*" + query + ".*", $options: "i"}}, { title: {$regex: ".*" + query + ".*", $options: "i"}} ] }).fetch().forEach(function(part) {
+
       	let el = `<div class="m-t-10">
       		${count}. <b>${part.title} (Qty: ${part.qty})</b> - <a href="/part/${part._id}">Update Part</a>
       	</div>
