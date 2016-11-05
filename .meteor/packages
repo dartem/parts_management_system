@@ -26,3 +26,5 @@ voodoohop:masonrify
 session
 fortawesome:fontawesome
 react-meteor-data
+gwendall:auth-client-callbacks  # onLogin and onLogout functions
+meteortoys:allthings            # development helper - should be removed in production
