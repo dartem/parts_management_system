@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Router, Link } from "react-router";
-import request from 'request';
-import Dropzone from 'react-dropzone';
 
 import { Parts } from '../api/parts.js';
 import { Locations } from '../api/locations.js';
