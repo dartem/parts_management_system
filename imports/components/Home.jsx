@@ -33,7 +33,7 @@ class Home extends Component {
 	render() {
 
 		const {loading} = this.props;
-
+		
 		if (loading) {
 			return (
 				<div>

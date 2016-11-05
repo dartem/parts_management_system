@@ -20,9 +20,9 @@ export class App extends React.Component {
 
   render() {
   
-   //Accounts.onLogin(function() {
-	 //	window.location="/"; // Default page on logging in event
-	 //});
+   Accounts.onLogin(function() {
+	 	window.location="/"; // Default page on logging in event
+	 });
     	
     Accounts.onLogout(function() {
       document.body.innerHTML = '';
