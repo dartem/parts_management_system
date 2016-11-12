@@ -1,6 +1,6 @@
 /* CSS declarations go here */
 
-.delete {float:right;margin-top:8px;}
+.delete {float:right;margin-top:5px;}
 .error {color:red;}
 .edit {padding: .2em;color: #000;background: #fcf8e3;border-radius: 4px;}
 
@@ -27,6 +27,8 @@
 	.font-slim{font-weight: 100}.font-normal{font-weight: 400}.font-bold{font-weight: 900}
 
 	.text-red{color:red}
+
+	.width100Poh{width:100%;overflow:hidden;}
 
 @media screen and (max-width: 650px) {
 	.grid-item { width: 50%;}

@@ -6,6 +6,7 @@ import { Router, Link } from "react-router";
 import { Parts } from '../api/parts.js';
 import { Locations } from '../api/locations.js';
 import { Appliances } from '../api/appliances.js';
+import { Photos } from '../api/photos.js';
 
 class AddPart extends Component {
 		
@@ -49,6 +50,44 @@ class AddPart extends Component {
 	finishUpdate(event) {
 	    event.preventDefault();
 		window.location="/";
+	}
+
+	photoInputOnChange(e){
+		let files = e.currentTarget.files;
+		if(files && files[0]){
+
+			let FR = new FileReader();
+			FR.onload = (data) => {
+				Meteor.call('partPhoto.update', this.props.parts[0]._id, data.target.result);
+			}
+			FR.readAsDataURL(files[0]);
+
+		}
+	}
+
+	renderPhoto(){
+
+		if(this.props.parts[0].photo){
+			return (
+				<div>
+					<img width={100} src={this.props.parts[0].photo} />
+				</div>
+			)
+		}
+	}
+
+	removeImage(e) {
+		e.preventDefault();
+		if (confirm("Remove Image?") == true) {
+	      Meteor.call('partImage.remove', this.props.parts[0]._id);
+	    }
+	}
+
+	renderRemoveImage() {
+		if (this.props.parts[0].photo) {
+			return <button type="button" className="btn btn-danger btn-xs m-t-20" onClick={this.removeImage.bind(this)}>Remove Image</button>
+		}
+		
 	}
 
 	render() {
@@ -109,6 +148,18 @@ class AddPart extends Component {
 									    	</div>
 									    </div>
 
+									    <div className="row m-t-20">
+									    	<div className="col-md-4">
+									    		{this.renderPhoto()}
+									    	</div>
+									    	<div className="col-md-8">
+									    		<input type='file' onChange={this.photoInputOnChange.bind(this)} className="width100Poh btn"/>
+
+									    		{this.renderRemoveImage()}
+									    		
+									    	</div>
+									    </div>
+
 										<Link to={`/`} className="btn btn-primary btn-block m-t-20">Finish Update <span id="part_success_box"></span></Link>
 						          	</form>
 
@@ -134,12 +185,14 @@ AddPart.propTypes = {
   parts: PropTypes.array.isRequired,
   locations: PropTypes.array.isRequired,
   appliances: PropTypes.array.isRequired,
+  photos: PropTypes.array.isRequired,
 };
  
 export default createContainer(({ params }) => {
   Meteor.subscribe('parts');
   Meteor.subscribe('locations');
   Meteor.subscribe('appliances');
+  Meteor.subscribe('photos');
 
   const partId = params.partId;
 
@@ -147,5 +200,6 @@ export default createContainer(({ params }) => {
     parts: Parts.find({ "_id" : partId }, { sort: { createdAt: -1 } }).fetch(),
     locations: Locations.find({}, { sort: { createdAt: -1 } }).fetch(),
     appliances: Appliances.find({}, { sort: { createdAt: -1 } }).fetch(),
+    photos: Photos.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 }, AddPart);

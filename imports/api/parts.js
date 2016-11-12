@@ -79,4 +79,29 @@ Meteor.methods({
     Parts.update(partId, { $set: { title, num, qty, price, myPrice, location, appliance } });
   },
 
+  'partPhoto.update'(partId, photo) {
+    check(partId, String);
+    check(photo, String);
+
+    const part = Parts.findOne(partId);
+    if (part.owner !== this.userId) {
+      // making sure only the owner can delete it
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Parts.update(partId, { $set: { "photo" : photo } });
+  },
+
+  'partImage.remove'(partId) {
+    check(partId, String);
+
+    const part = Parts.findOne(partId);
+    if (part.owner !== this.userId) {
+      // making sure only the owner can delete it
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Parts.update(partId, { $set: { "photo" : null } });
+  }
+
 });

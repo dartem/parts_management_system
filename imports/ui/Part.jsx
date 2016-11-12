@@ -25,11 +25,14 @@ export default class Part extends Component {
 
   render() {
 
+    let thisPhoto = '';
+    (this.props.part.photo) ? thisPhoto = this.props.part.photo : null;
+
     return (
 
     	<div className="grid-item">
         <div className="thumbnail m-all-10">
-          <img src="" alt="" />
+          <img src={thisPhoto} alt="" />
           <div className="caption">
             <h4>{this.props.part.title} <i className="fa fa-trash-o text-red" aria-hidden="true" onClick={this.removePart.bind(this)}></i></h4>
             <div>Number: {this.props.part.num}</div>
