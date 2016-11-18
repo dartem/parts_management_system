@@ -47,7 +47,7 @@ class LocationsImport extends Component {
 
 		if (this.props.locations.length > 0) {
 			return (
-				<div className="panel panel-default">
+				<div className="panel panel-info">
 			    	<div className="panel-heading"><h5 className="m-all-0">Locations</h5></div>
 			    	<div className="panel-body">
 			    		<form onSubmit={this.addLocation.bind(this)} >

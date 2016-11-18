@@ -23,6 +23,7 @@ class AddPart extends Component {
 	    let partMyPrice = ReactDOM.findDOMNode(this.refs.partMyPrice).value.trim();
 	    let partLocation = ReactDOM.findDOMNode(this.refs.partLocation).value.trim();
 	    let partAppliance = ReactDOM.findDOMNode(this.refs.partAppliance).value.trim();
+	    let partImage = ReactDOM.findDOMNode(this.refs.image).files[0];
 
 	    if (partTitle != '' && partTitle != ' ' && partNumber != '' && partNumber != ' ') {
 
@@ -47,20 +48,23 @@ class AddPart extends Component {
 	    	if (partAppliance == '' || partAppliance == ' ') {
 	    		partAppliance = '...';
 	    	}
-	 
-		    Meteor.call('part.insert', partTitle, partNumber, partQty, partPrice, partMyPrice, partLocation, partAppliance);
+
+	    	if(partImage){
+		    	let FR = new FileReader();
+				FR.onload = (data) => {
+					Meteor.call('part.insert', partTitle, partNumber, partQty, partPrice, partMyPrice, partLocation, partAppliance, data.target.result);
+				}
+				FR.readAsDataURL(partImage);
+	 		} else {
+	 			partImage = '';
+	 			Meteor.call('part.insert', partTitle, partNumber, partQty, partPrice, partMyPrice, partLocation, partAppliance, partImage);
+	 		}
 
 		    document.getElementById("part_success_box").innerHTML = `<div class="alert alert-success" role="alert">
 		    	${partTitle} was added successfully!
 		    </div>`;
 
-		    ReactDOM.findDOMNode(this.refs.partTitle).value = '';
-		    ReactDOM.findDOMNode(this.refs.partNumber).value = '';
-		    ReactDOM.findDOMNode(this.refs.partQty).value = '';
-		    ReactDOM.findDOMNode(this.refs.partPrice).value = '';
-		    ReactDOM.findDOMNode(this.refs.partMyPrice).value = '';
-		    ReactDOM.findDOMNode(this.refs.partLocation).value = '';
-		    ReactDOM.findDOMNode(this.refs.partAppliance).value = '';
+		    ReactDOM.findDOMNode(this.refs.addForm).reset();
 
 		} else {
 	      document.getElementById("part_error_box").innerHTML = 'Part title & number can\'t be blank!';
@@ -96,13 +100,13 @@ class AddPart extends Component {
 
 						<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
-						<div className="panel panel-default">
+						<div className="panel panel-info">
 					    	<div className="panel-heading"><h5 className="m-all-0">Add Part</h5></div>
 					    	<div className="panel-body">
 
 					    		<div id="part_success_box"></div>
 
-					    		<form onSubmit={this.addPart.bind(this)}>
+					    		<form onSubmit={this.addPart.bind(this)} ref="addForm">
 								    <input type="text" className="form-control" placeholder="Part Title" ref="partTitle" />
 								    <input type="text" className="form-control m-t-15" placeholder="Part number" ref="partNumber" />
 								    <div className="row">
@@ -130,6 +134,12 @@ class AddPart extends Component {
 										    </select>
 										</div>
 									</div>
+									<div className="row">
+									    <div className="col-md-12 m-t-20">
+											<input type='file' className="width100Poh btn" ref="image"/>
+										</div>
+									</div>
+
 								    <button className="btn btn-primary btn-block m-t-15" type="submit">Add Part</button>
 					          	</form>
 

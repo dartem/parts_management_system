@@ -48,7 +48,7 @@ class Home extends Component {
 
 					{this.renderHeader()}
 
-					<div className="panel panel-default m-l-10 m-r-10">
+					<div className="panel panel-info m-l-10 m-r-10">
 						<div className="panel-heading"><h5 className="m-all-0">All Parts</h5></div>
 					</div>
 

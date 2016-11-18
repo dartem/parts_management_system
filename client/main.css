@@ -1,10 +1,14 @@
 /* CSS declarations go here */
 
+body {background: url("../images/diagonales_decalees.png") 0 0 repeat;}
 .delete {float:right;margin-top:5px;}
 .error {color:red;}
 .edit {padding: .2em;color: #000;background: #fcf8e3;border-radius: 4px;}
 
 .grid-item { width:33.3333%;}
+
+.navbar-default {color: #31708f;background-color: #d9edf7;-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);box-shadow: 0 1px 1px rgba(0, 0, 0, .05);}
+.navbar-header .navbar-brand, .navbar-header .navbar-brand:hover {color: #31708f;}
 
 	/* margin */
 	.m-all-0{margin:0}.m-all-5{margin:5px}.m-all-10{margin:10px}.m-all-15{margin:15px}.m-all-20{margin:20px}

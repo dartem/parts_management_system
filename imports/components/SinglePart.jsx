@@ -15,7 +15,7 @@ class AddPart extends Component {
 
 	    document.getElementById("part_error_box").innerHTML = '';
 
-	    let partTitle = ReactDOM.findDOMNode(this.refs.partTitle).value.trim();
+	    let partTitle = ReactDOM.findDOMNode(this.refs.partTitle).value;
 	    let partNumber = ReactDOM.findDOMNode(this.refs.partNumber).value.trim();
 	    let partQty = ReactDOM.findDOMNode(this.refs.partQty).value.trim();
 	    	partQty = parseInt(partQty);
@@ -103,7 +103,7 @@ class AddPart extends Component {
 
 							<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
-							<div className="panel panel-default">
+							<div className="panel panel-info">
 						    	<div className="panel-heading"><h5 className="m-all-0">Update {this.props.parts[0].title} info</h5></div>
 						    	<div className="panel-body">
 

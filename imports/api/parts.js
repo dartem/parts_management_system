@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'part.insert'(title, num, qty, price, myPrice, location, appliance) {
+  'part.insert'(title, num, qty, price, myPrice, location, appliance, photo) {
     check(title, String);
     check(num, String);
     check(qty, Number);
@@ -20,6 +20,7 @@ Meteor.methods({
     check(myPrice, String);
     check(location, String);
     check(appliance, String);
+    check(photo, String);
  
     Parts.insert({
       title,
@@ -29,6 +30,7 @@ Meteor.methods({
       myPrice,
       location,
       appliance,
+      photo,
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,

@@ -40,7 +40,7 @@ class Home extends Component {
 
 					<h4 className="text-right m-l-10 m-r-10"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
-					<div className="panel panel-default m-l-10 m-r-10">
+					<div className="panel panel-info m-l-10 m-r-10">
 						<div className="panel-heading"><h5 className="m-all-0">Parts with QTY 0</h5></div>
 					</div>
 					<Masonry

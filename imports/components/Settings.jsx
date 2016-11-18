@@ -53,7 +53,7 @@ class Settings extends Component {
 
 					<div className="row m-t-20">
 			            <div className="col-md-6">
-			              	<div className="panel panel-default">
+			              	<div className="panel panel-info">
 			                	<div className="panel-heading"><h5 className="m-all-0">Appliance</h5></div>
 			                	<div className="panel-body">
 			                		<form onSubmit={this.addAppliance.bind(this)} >
