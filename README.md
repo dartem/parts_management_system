@@ -1,7 +1,3 @@
 ## Installation guide
 
-Install missing dependencies
-
-```
-npm install
-```
+Live Version of App: [Go to App](http://parts.bizlabapp.com/)
