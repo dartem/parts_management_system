@@ -1,5 +1,11 @@
 {
-  "name": "Categories",
+  "name": "Appliance Parts App",
+  "version": "1.0.4",
+  "description": "Application for looking up appliance parts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dartem/parts"
+  },
   "private": true,
   "scripts": {
     "start": "meteor run"

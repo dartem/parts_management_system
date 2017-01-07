@@ -30,7 +30,7 @@ body {background: url("../images/diagonales_decalees.png") 0 0 repeat;}
 	/*OTHER*/
 	.font-slim{font-weight: 100}.font-normal{font-weight: 400}.font-bold{font-weight: 900}
 
-	.text-red{color:red}
+	.text-red{color:red}.bg-light-blue{color: #31708f;background-color: #d9edf7;}
 
 	.width100Poh{width:100%;overflow:hidden;}
 

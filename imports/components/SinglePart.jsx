@@ -17,15 +17,13 @@ class AddPart extends Component {
 
 	    let partTitle = ReactDOM.findDOMNode(this.refs.partTitle).value;
 	    let partNumber = ReactDOM.findDOMNode(this.refs.partNumber).value.trim();
-	    let partQty = ReactDOM.findDOMNode(this.refs.partQty).value.trim();
-	    	partQty = parseInt(partQty);
 	    let partPrice = ReactDOM.findDOMNode(this.refs.partPrice).value.trim();
 	    let partMyPrice = ReactDOM.findDOMNode(this.refs.partMyPrice).value.trim();
 	    let partLocation = ReactDOM.findDOMNode(this.refs.partLocation).value.trim();
 	    let partAppliance = ReactDOM.findDOMNode(this.refs.partAppliance).value.trim();
 
-	    if (partTitle != '' && partNumber != '' && !isNaN(partQty) ) {
-	  		Meteor.call('fullPart.update', this.props.parts[0]._id, partTitle, partNumber, partQty, partPrice, partMyPrice, partLocation, partAppliance);
+	    if (partTitle != '' && partNumber != '') {
+	  		Meteor.call('fullPart.update', this.props.parts[0]._id, partTitle, partNumber, partPrice, partMyPrice, partLocation, partAppliance);
 	  		
 	  		document.getElementById("part_success_box").innerHTML = `<span class="updated-2-sec"> - updated</span>`;
 	  		$('.updated-2-sec').fadeOut(2000);
@@ -33,6 +31,18 @@ class AddPart extends Component {
 	  		document.getElementById("part_error_box").innerHTML += `Part title & number can't be blank!<br>QTY should be a number!`;
 	  	}
 	    
+	}
+
+	substructOne() {
+		const substructedQty = parseInt(this.props.parts[0].qty) - 1;
+		if (substructedQty >= 0) {
+			Meteor.call('partQTY.update', this.props.parts[0]._id, substructedQty);
+		}
+	}
+
+	addOne() {
+		const addedQty = parseInt(this.props.parts[0].qty) + 1;
+		Meteor.call('partQTY.update', this.props.parts[0]._id, addedQty);
 	}
 
 	renderLocations() {
@@ -104,33 +114,32 @@ class AddPart extends Component {
 							<h4 className="text-right"><Link to={`/`}><i className="fa fa-reply" aria-hidden="true"></i> All Parts</Link></h4>
 
 							<div className="panel panel-info">
-						    	<div className="panel-heading"><h5 className="m-all-0">Update {this.props.parts[0].title} info</h5></div>
+						    	<div className="panel-heading"><h5 className="m-all-0">Update {this.props.parts[0].title} info <span className="badge">Qty: {this.props.parts[0].qty}</span></h5></div>
 						    	<div className="panel-body">
 
 						    		<form onSubmit={this.finishUpdate.bind(this)}>
-						    			<label>Title</label>
-									    <input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].title} ref="partTitle" />
 									    
-									    <label className=" m-t-10">Part Number</label>
-									    <input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].num} ref="partNumber" />
-									    
-									    <div className="row">
-									    	<div className="col-md-4">
-										    	<label className=" m-t-10">Quantity</label>
-										    	<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].qty} ref="partQty" />
+									    <div className="row m-b-10">
+									    	<div className="col-sm-6">
+									    		<label>Title</label>
+									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].title} ref="partTitle" />
 									    	</div>
-									    	<div className="col-md-4">
-									    		<label className=" m-t-10">Market Price</label>
-									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].price} ref="partPrice" />
-									    	</div>
-									    	<div className="col-md-4">
-									    		<label className=" m-t-10">My Price</label>
-									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].myPrice} ref="partMyPrice" />
+									    	<div className="col-sm-6">
+									    		<label className="">Part Number</label>
+									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].num} ref="partNumber" />
 									    	</div>
 									    </div>
 
 									    <div className="row">
-									    	<div className="col-md-6">
+									    	<div className="col-sm-3">
+									    		<label className=" m-t-10">Price</label>
+									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].price} ref="partPrice" />
+									    	</div>
+									    	<div className="col-sm-3">
+									    		<label className=" m-t-10">My Price</label>
+									    		<input type="text" onChange={this.updatePart.bind(this)} className="form-control" value={this.props.parts[0].myPrice} ref="partMyPrice" />
+									    	</div>
+									    	<div className="col-sm-3">
 												<label className=" m-t-10">Location</label>
 											    <select className="form-control" ref="partLocation" onChange={this.updatePart.bind(this)}>
 											    	<option value={this.props.parts[0].location}>{this.props.parts[0].location}</option>
@@ -138,7 +147,7 @@ class AddPart extends Component {
 											    	{this.renderLocations()}
 											    </select>
 									    	</div>
-									    	<div className="col-md-6">
+									    	<div className="col-sm-3">
 												<label className=" m-t-10">Appliance</label>
 											    <select className="form-control" ref="partAppliance" onChange={this.updatePart.bind(this)}>
 											    	<option value={this.props.parts[0].appliance}>{this.props.parts[0].appliance}</option>
@@ -160,7 +169,14 @@ class AddPart extends Component {
 									    	</div>
 									    </div>
 
-										<Link to={`/`} className="btn btn-primary btn-block m-t-20">Finish Update <span id="part_success_box"></span></Link>
+										<div className="text-center">
+											<div className="btn-group m-t-20" role="group" aria-label="...">
+												<Link to={`/`} className="btn btn-primary">Finish Update <span id="part_success_box"></span></Link>
+												<button type="button" className="btn btn-default" onClick={this.substructOne.bind(this)}>- 1</button>
+												<button type="button" className="btn btn-default" onClick={this.addOne.bind(this)}>+ 1</button>
+											</div>
+										</div>
+
 						          	</form>
 
 						          	<div className="error" id="part_error_box"></div>

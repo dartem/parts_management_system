@@ -62,11 +62,10 @@ Meteor.methods({
     Parts.update(partId, { $set: { "qty" : qty } });
   },
 
-  'fullPart.update'(partId, title, num, qty, price, myPrice, location, appliance) {
+  'fullPart.update'(partId, title, num, price, myPrice, location, appliance) {
     check(partId, String);
     check(title, String);
     check(num, String);
-    check(qty, Number);
     check(price, String);
     check(myPrice, String);
     check(location, String);
@@ -78,7 +77,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
 
-    Parts.update(partId, { $set: { title, num, qty, price, myPrice, location, appliance } });
+    Parts.update(partId, { $set: { title, num, price, myPrice, location, appliance } });
   },
 
   'partPhoto.update'(partId, photo) {

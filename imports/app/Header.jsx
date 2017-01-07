@@ -21,12 +21,12 @@ export class Header extends Component {
 
       var queryRes = Parts.find({  $or: [ { num: {$regex: ".*" + query + ".*", $options: "i"}}, { title: {$regex: ".*" + query + ".*", $options: "i"}} ] }).fetch().forEach(function(part) {
 
-      	let el = `<div class="m-t-10">
-      		${count}. <b>${part.title} (Qty: ${part.qty})</b> - <a href="/part/${part._id}" class="edit">[<i class="fa fa-pencil" aria-hidden="true"></i>]</a>
-      	</div>
-      	<div class="p-l-15 m-b-10 gray-color">
-      		<b>#${part.num}</b><br>$${part.price} ($${part.myPrice}) ~ location: ${part.location}</div>
-      	</div>`;
+        let el = `<a href="/part/${part._id}" class="list-group-item">
+                    <p class="list-group-item-heading">${part.title} <span class="badge bg-light-blue">Qty: ${part.qty}</span></p>
+                    <p class="list-group-item-text">
+                      <b>#${part.num}</b><br>$${part.price} ($${part.myPrice}) ~ location: ${part.location}
+                    </p>
+                  </a>`;
       
         searchResult.innerHTML += el;
         count++;
@@ -59,7 +59,7 @@ export class Header extends Component {
 	                  </div>
 	                </form>
 
-	                <div id="searchResult" className="m-t-10"></div>
+	                <div id="searchResult" className="m-t-10 list-group"></div>
 	            </div>
 	          </div>
 	          <div className="col-md-6">
